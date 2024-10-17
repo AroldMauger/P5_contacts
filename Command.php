@@ -8,12 +8,10 @@ class Command
     private $contactManager;
 
     public function __construct() {
-        $dbconnect = new DBConnect();
-        $this->pdo = $dbconnect->getPDO();
+
         $this->contactManager = new ContactManager($this->pdo);
     }
 
-    // Méthode pour lister les contacts
     public function list() {
         $contacts = $this->contactManager->findAll();
 

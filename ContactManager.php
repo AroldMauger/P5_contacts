@@ -5,9 +5,9 @@ class ContactManager
 {
 
     private $db;
-    public function __construct($pdo)
+    public function __construct()
     {
-        $this->db = $pdo;
+        $this->db = DBConnect::getPDO();
     }
 
     public function findAll() {
