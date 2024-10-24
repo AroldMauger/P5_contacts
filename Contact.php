@@ -7,7 +7,7 @@ class Contact
     private $email;
     private $phone_number;
 
-    public function __construct($id = null, $name = null, $email = null, $phone_number = null ) {
+    public function __construct($id, $name, $email, $phone_number) {
         $this->id = $id;
         $this->name = $name;
         $this->email = $email;
@@ -19,14 +19,14 @@ class Contact
     }
 
     public function setId($id) {
-        return $this->id;
+        $this->id = $id;
     }
     public function getName() {
         return $this->name;
     }
 
     public function setName($name) {
-        return $this->name;
+        $this->name = $name;
     }
 
     public function getEmail() {
@@ -34,14 +34,14 @@ class Contact
     }
 
     public function setEmail($email) {
-        return $this->email;
+        $this->email = $email;
     }
     public function getPhone() {
         return $this->phone_number;
     }
 
     public function setPhone($phone_number) {
-        return $this->phone_number;
+        $this->phone_number = $phone_number;
     }
 
     public function toString() {
