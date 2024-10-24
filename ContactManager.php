@@ -51,6 +51,20 @@ class ContactManager
         return $contact;
     }
 
+    public function updateOne($id, $name, $email, $phone_number) {
+        $checkQuery = $this->db->prepare('SELECT COUNT(*) FROM contact WHERE id = ?'); // COUNT(*) permet d'aller chercher la ligne avec l'id spécifié.
+        $checkQuery->execute([$id]);
+        $count = $checkQuery->fetchColumn();
+        // si l'id est trouvé, alors $count = 1 , sinon $count = 0
+        if ($count == 0) {
+            return false;
+        }
+
+        $query = $this->db->prepare('UPDATE contact SET name = ?, email = ?, phone_number = ? WHERE id = ?');
+        $query->execute([$name, $email, $phone_number, $id]);
+        return true;
+    }
+
     public function deleteOne($id) {
         $checkQuery = $this->db->prepare('SELECT COUNT(*) FROM contact WHERE id = ?');
         $checkQuery->execute([$id]);
