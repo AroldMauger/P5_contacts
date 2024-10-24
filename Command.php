@@ -15,10 +15,10 @@ class Command
         $contacts = $this->contactManager->findAll();
 
         if (empty($contacts)) {
-            echo "Aucun contact n'a été trouvé!";
+            echo "Aucun contact n'a été trouvé!". PHP_EOL;
         } else {
             foreach ($contacts as $contact) {
-                echo $contact->toString() . "\n"; // Utilise la méthode toString() de la classe Contact
+                echo $contact->toString() . "\n";
             }
         }
     }
@@ -27,7 +27,7 @@ class Command
         $contact = $this->contactManager->findOne($id);
 
         if (empty($contact)) {
-            echo "Aucun contact ne correspond à votre recherche.";
+            echo "Aucun contact ne correspond à votre recherche.". PHP_EOL;
         } else {
             echo $contact->toString() . "\n";
         }
@@ -37,5 +37,14 @@ class Command
         $contact = new Contact(null, $contactData['name'], $contactData['email'], $contactData['phone_number']);
         $this->contactManager->createOne($contact);
         echo "Contact créé avec succès!" . PHP_EOL;
+    }
+
+    public function delete($id) {
+        $result = $this->contactManager->deleteOne($id);
+        if ($result) {
+            echo "Contact supprimé avec succès!" . PHP_EOL;
+        } else {
+            echo "Le contact avec cet ID n'existe pas. Veuillez entrer un ID existant." . PHP_EOL;
+        }
     }
 }

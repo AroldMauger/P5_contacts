@@ -51,4 +51,18 @@ class ContactManager
         return $contact;
     }
 
+    public function deleteOne($id) {
+        $checkQuery = $this->db->prepare('SELECT COUNT(*) FROM contact WHERE id = ?');
+        $checkQuery->execute([$id]);
+        $count = $checkQuery->fetchColumn();
+
+        if ($count == 0) {
+            return false;
+        }
+
+        $query = $this->db->prepare('DELETE FROM contact WHERE id = ?');
+        $query->execute([$id]);
+        return true;
+    }
+
 }

@@ -9,7 +9,13 @@ while(true) {
         $detailCommand = new Command();
         $detailCommand->detail($id);
 
-    } elseif ($line === "list") {
+    } elseif (preg_match('/^delete\s+(\d+)$/', $line, $matches)) {
+        $id = $matches[1];
+        $deleteCommand = new Command();
+        $deleteCommand->delete($id);
+    }
+
+    elseif ($line === "list") {
         $listCommand = new Command();
         $listCommand->list();
 
@@ -30,6 +36,6 @@ while(true) {
         }
     }
     else {
-        echo "Commande non reconnue. Les commandes disponibles sont 'list' et 'detail [id]'.\n";
+        echo "Commande non reconnue. Les commandes disponibles sont 'list', 'detail [id]', 'create' et 'delete [id]'.\n";
     }
 }
