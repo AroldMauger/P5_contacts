@@ -76,6 +76,7 @@ class Command
         echo "help : affiche cette aide\n";
         echo "list : liste les contacts\n";
         echo "create [name], [email], [phone number] : crée un contact\n";
+        echo "modify [id] : modifie un contact\n";
         echo "delete [id] : supprime un contact\n";
         echo "quit : quitte le programme\n";
         echo "\nAttention à la syntaxe des commandes, les espaces et virgules sont importants.\n";
